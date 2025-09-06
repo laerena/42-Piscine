@@ -6,7 +6,7 @@
 /*   By: leilai <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 12:37:07 by leilai            #+#    #+#             */
-/*   Updated: 2025/09/05 14:31:50 by leilai           ###   ####lausanne.ch   */
+/*   Updated: 2025/09/05 15:13:58 by leilai           ###   ####lausanne.ch   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 		return (result);
 	}
 	len = result_len(size, strs, sep);
-	result = malloc(len);
+	result = malloc(len + 1);
 	if (!result)
 		return (result);
 	result[0] = '\0';
