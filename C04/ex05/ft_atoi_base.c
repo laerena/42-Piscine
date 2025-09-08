@@ -6,13 +6,14 @@
 /*   By: leilai <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 12:10:39 by leilai            #+#    #+#             */
-/*   Updated: 2025/08/28 18:23:54 by leilai           ###   ####lausanne.ch   */
+/*   Updated: 2025/09/08 12:35:32 by leilai           ###   ####lausanne.ch   */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_strlen(char *base);
 int	verif(char *base);
 int	base_location(char c, char *base);
+int	skip(char *str, int *sign);
 
 int	ft_atoi_base(char *str, char *base)
 {
@@ -20,27 +21,38 @@ int	ft_atoi_base(char *str, char *base)
 	int	result;
 	int	sign;
 	int	i;
+	int	pos;
 
+	if (!verif(base))
+		return (0);
 	b = ft_strlen(base);
 	result = 0;
 	sign = 1;
+	i = skip(str, &sign);
+	pos = base_location(str[i], base);
+	while (pos != -1)
+	{
+		result = result * b + pos;
+		i++;
+		pos = base_location(str[i], base);
+	}
+	return (result * sign);
+}
+
+int	skip(char *str, int *sign)
+{
+	int	i;
+
 	i = 0;
 	while ((str[i] >= 9 && str[i] <= 13) || (str[i] == 32))
 		i++;
 	while (str[i] == '+' || str[i] == '-')
 	{
 		if (str[i] == '-')
-			sign *= -1;
+			*sign *= -1;
 		i++;
 	}
-	while (str[i])
-	{
-		if (base_location(str[i], base) == -1)
-			return (0);
-		result = result * b + (base_location(str[i], base));
-		i++;
-	}
-	return (result * sign);
+	return (i);
 }
 
 int	base_location(char c, char *base)
