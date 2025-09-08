@@ -6,7 +6,7 @@
 /*   By: leilai <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 17:34:15 by leilai            #+#    #+#             */
-/*   Updated: 2025/09/08 18:06:29 by leilai           ###   ####lausanne.ch   */
+/*   Updated: 2025/09/08 19:34:18 by leilai           ###   ####lausanne.ch   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ t_square	solver(t_map *map);
 
 char	**make_tg(void)
 {
-	char **grid = malloc(4);
-	grid[0] = strdup("...o.");
-	grid[1] = strdup(".....");
-	grid[2] = strdup(".o...");
-	grid[3] = strdup(".....");
+	char **grid = malloc(sizeof(char *) * 4);
+	grid[0] = strdup("...o.....");
+	grid[1] = strdup(".....o...");
+	grid[2] = strdup(".o..o.o..");
+	grid[3] = strdup(".........");
 	return (grid);
 }
 void	free_tg(char **grid, int rows)
@@ -53,7 +53,7 @@ int	main()
 {
 	t_map	map;
 	map.rows = 4;
-	map.cols = 5;
+	map.cols = 9;
 	map.empty = '.';
 	map.obstacle = 'o';
 	map.full = 'x';

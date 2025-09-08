@@ -6,7 +6,7 @@
 /*   By: leilai <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 16:03:29 by leilai            #+#    #+#             */
-/*   Updated: 2025/09/08 18:05:52 by leilai           ###   ####lausanne.ch   */
+/*   Updated: 2025/09/08 19:21:02 by leilai           ###   ####lausanne.ch   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ t_square	solver(t_map *map)
 
 	new = allo_g(map->rows, map->cols);
 	y = 0;
+	max.size = 0;
+	max.row = 0;
+	max.col = 0;
 	while (y < map->rows)
 	{
 		x = 0;
@@ -38,13 +41,13 @@ t_square	solver(t_map *map)
 				new[y][x] = 1;
 			else
 				new[y][x] = 1 + min3(new[y-1][x], new[y][x-1], new[y-1][x-1]);
+			if (new[y][x] > max.size)
+			{
+				max.size = new[y][x];
+				max.row = y;
+				max.col = x;
+			}
 			x++;
-		}
-		if (new[y][x] > max.size)
-		{
-			max.size = new[y][x];
-			max.row = y;
-			max.col = x;
 		}
 		y++;
 	}
