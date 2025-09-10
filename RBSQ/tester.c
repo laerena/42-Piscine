@@ -6,7 +6,7 @@
 /*   By: leilai <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 17:34:15 by leilai            #+#    #+#             */
-/*   Updated: 2025/09/08 19:34:18 by leilai           ###   ####lausanne.ch   */
+/*   Updated: 2025/09/08 23:56:53 by leilai           ###   ####lausanne.ch   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	**make_tg(void)
 	char **grid = malloc(sizeof(char *) * 4);
 	grid[0] = strdup("...o.....");
 	grid[1] = strdup(".....o...");
-	grid[2] = strdup(".o..o.o..");
+	grid[2] = strdup("....o.o..");
 	grid[3] = strdup(".........");
 	return (grid);
 }

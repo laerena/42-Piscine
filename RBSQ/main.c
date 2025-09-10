@@ -6,7 +6,7 @@
 /*   By: romousqu <romousqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 15:20:37 by romousqu          #+#    #+#             */
-/*   Updated: 2025/09/09 18:05:28 by romousqu         ###   ########.fr       */
+/*   Updated: 2025/09/10 09:08:28 by leilai           ###   ####lausanne.ch   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int		ft_strlen(char *str);
 char	*ft_strdup(char *src);
 void	print_array(char **array);
 char	**ft_split(char *str, char c);
+void    solve(char **array_map);
 
 int	ft_error(char *msg, int return_value)
 {
@@ -69,7 +70,7 @@ char	*read_string(int fd)
 	res = ft_strdup("");
 	while(already_read > 0)
 	{
-		already_read = read(fd, current, 10);
+		already_read = read(fd, current, 1024);
 		current[already_read] = '\0';
 		// printf("\ncurrent :\n%s\n", current);
 		res = ft_str_njoin(res, current, already_read);
@@ -96,38 +97,42 @@ char	*read_string(int fd)
 // 
 // then i send the map to you 
 //
-int	bsq(char *file_name)
+int	bsq(char *file_name, int no_arg)
 {
 	int		fd;
 	char	*pre_map;
 	// char	*first_line;
 	char	**array_map;
 
-	fd = open(file_name, O_RDONLY);
-	if (fd == -1)
-		return (ft_error("Map error\n", 0));
-	pre_map = read_string(fd);
-	
-	if (!pre_map /*&& !check_map(pre_map)*/)
+	if (no_arg)
+		pre_map = read_string(0);
+	else
 	{
-		if (pre_map)
-			free(pre_map);
-		return (ft_error("Map error\n", 0));
+		fd = open(file_name, O_RDONLY);
+		if (fd == -1)
+			return (0);
+		pre_map = read_string(fd);
 	}
-	printf("\nPremap : \n%s\n\n", pre_map);
-	
-	array_map = ft_split(pre_map, '\n');
-	print_array(array_map);							//map after split
-
-	//check
-
+	if (!pre_map)
+		return (0);
+	array_map = ft_split(pre_map, '\n'); // printf("\nPremap : \n%s\n\nc", pre_map);
+	free(pre_map);
+	if (!no_arg)
+		close (fd);
+	printf("array created : \n");
+	print_array(array_map);					//map after splitx
+	/*if(!check_array(array_map))
+	{
+		free_array(array_map);
+		return (0);
+	}
+	*/
 	//you function
-	//leilai(array_map, first_line);
+	//leilai(array_map);
+	solve(array_map);
 
-
-	close (fd);
-	free (pre_map);
-	// free_array(array_map);
+	
+	// free_array(array_map);			or let s add a free all function?
 	return (1);
 }
 
@@ -136,17 +141,21 @@ int	main(int argc, char **argv)
 {
 	int	i;
 
-	if (argc < 2)
-		ft_putstr("No argument\n");
-
+	printf("starting :\n");
+	if (argc == 1)
+	{	
+		// printf("taking from standard input");
+		if (!bsq(NULL, argc))
+			ft_putstr("map error\n");
+	}
 	else
 	{
 		i = 1;
 		while (i < argc)
 		{
 			if (i > 1)
-				ft_putstr("\n\n");
-			if (!bsq(argv[i]))
+				ft_putstr("");
+			if (!bsq(argv[i], 0))
 			{
 				ft_putstr("map error\n");
 			}
