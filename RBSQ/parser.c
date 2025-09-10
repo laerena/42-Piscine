@@ -6,7 +6,7 @@
 /*   By: leilai <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 22:19:36 by leilai            #+#    #+#             */
-/*   Updated: 2025/09/09 23:47:20 by leilai           ###   ####lausanne.ch   */
+/*   Updated: 2025/09/10 09:39:47 by leilai           ###   ####lausanne.ch   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-int	ft_atoi_n(char str, int len)
+int	ft_strlen(char *str);
+
+int	ft_atoi_n(char *str, int len)
 {
 	int	i;
 	int	n;
@@ -27,17 +29,19 @@ int	ft_atoi_n(char str, int len)
 		i++;
 	}
 	return (n);
+
 }
 
-int	parse_line(char **array_map, t_map *map)
+int	parser(char **array_map, t_map *map)
 {
 	int	len;
 	char	*line;
-	int	i;
 	
 	len = 0;
 	line = array_map[0];
-	while (line[len] && line[len] != '\n')
+	if (!line)
+		return (0);
+	while (line[len])
 		len++;
 	if (len < 4)
 		return (0);
@@ -45,8 +49,6 @@ int	parse_line(char **array_map, t_map *map)
 	map->empty = line[len - 3];
 	map->obstacle = line[len - 2];
 	map->full = line[len - 1];
-	while (array_map[i])
-		i++;
-	map->cols = i;
+	map->cols = ft_strlen(array_map[1]);
 	return (1);
 }
