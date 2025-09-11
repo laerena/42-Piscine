@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leilai <marvin@42lausanne.ch>              +#+  +:+       +#+        */
+/*   By: romousqu <romousqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 22:19:36 by leilai            #+#    #+#             */
-/*   Updated: 2025/09/10 09:39:47 by leilai           ###   ####lausanne.ch   */
+/*   Updated: 2025/09/10 20:29:11 by leilai           ###   ####lausanne.ch   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ut.h"
+#include "../includes/ut.h"
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -20,7 +20,7 @@ int	ft_atoi_n(char *str, int len)
 {
 	int	i;
 	int	n;
-	
+
 	i = 0;
 	n = 0;
 	while (i < len && str[i] >= '0' && str[i] <= '9')
@@ -29,14 +29,13 @@ int	ft_atoi_n(char *str, int len)
 		i++;
 	}
 	return (n);
-
 }
 
 int	parser(char **array_map, t_map *map)
 {
-	int	len;
+	int		len;
 	char	*line;
-	
+
 	len = 0;
 	line = array_map[0];
 	if (!line)
@@ -50,5 +49,6 @@ int	parser(char **array_map, t_map *map)
 	map->obstacle = line[len - 2];
 	map->full = line[len - 1];
 	map->cols = ft_strlen(array_map[1]);
+	map->grid = &array_map[1];
 	return (1);
 }

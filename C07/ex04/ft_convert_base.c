@@ -6,7 +6,7 @@
 /*   By: leilai <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 19:34:13 by leilai            #+#    #+#             */
-/*   Updated: 2025/09/09 14:32:13 by leilai           ###   ####lausanne.ch   */
+/*   Updated: 2025/09/10 23:10:20 by leilai           ###   ####lausanne.ch   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,6 @@ int	ft_strlen(char *str)
 #include <stdio.h>
 int	main()
 {
-	printf("%s\n", ft_convert_base("-225", "0123456789", "01234567"));
+	printf("%s\n", ft_convert_base("aa", "0123456789", "0123456"));
 }
 */

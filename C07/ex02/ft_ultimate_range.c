@@ -6,7 +6,7 @@
 /*   By: leilai <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 12:26:11 by leilai            #+#    #+#             */
-/*   Updated: 2025/09/05 12:28:51 by leilai           ###   ####lausanne.ch   */
+/*   Updated: 2025/09/08 11:44:57 by leilai           ###   ####lausanne.ch   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 //**range - an int (the actual value)
 
 #include <stdlib.h>
+
 int	ft_ultimate_range(int **range, int min, int max)
 {
 	int	*array;
@@ -33,7 +34,6 @@ int	ft_ultimate_range(int **range, int min, int max)
 		*range = NULL;
 		return (-1);
 	}
-	//logic
 	i = 0;
 	while (i < size)
 	{

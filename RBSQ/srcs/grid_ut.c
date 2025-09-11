@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   grid_ut.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leilai <marvin@42lausanne.ch>              +#+  +:+       +#+        */
+/*   By: romousqu <romousqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 19:20:40 by leilai            #+#    #+#             */
-/*   Updated: 2025/09/10 08:55:13 by leilai           ###   ####lausanne.ch   */
+/*   Updated: 2025/09/10 19:38:48 by romousqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ut.h"
+#include "../includes/ut.h"
 #include <unistd.h>
 #include <stdlib.h>
 

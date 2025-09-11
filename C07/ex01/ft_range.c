@@ -6,16 +6,17 @@
 /*   By: leilai <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 15:58:09 by leilai            #+#    #+#             */
-/*   Updated: 2025/09/03 17:42:50 by leilai           ###   ####lausanne.ch   */
+/*   Updated: 2025/09/08 11:45:58 by leilai           ###   ####lausanne.ch   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+
 int	*ft_range(int min, int max)
 {
 	int	*result;
 	int	i;
-	
+
 	if (min >= max)
 		return (0);
 	result = malloc(sizeof(int) * (max - min));

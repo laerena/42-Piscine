@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solve.c                                            :+:      :+:    :+:   */
+/*   ft_boolean.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: leilai <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/10 08:05:20 by leilai            #+#    #+#             */
-/*   Updated: 2025/09/10 09:50:36 by leilai           ###   ####lausanne.ch   */
+/*   Created: 2025/09/09 14:50:23 by leilai            #+#    #+#             */
+/*   Updated: 2025/09/09 15:00:04 by leilai           ###   ####lausanne.ch   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
-#include "ut.h"
+#include "ft_boolean.h"
 
-t_square	solver(t_map *map);
-int	parser(char **array_map, t_map *map);
-
-void	print_map(t_map *map)
+void	ft_putstr(char *str)
 {
-	int	i;
-
-	i = 0;
-	while (i < map->rows)
-	{
-		write(1, map->grid[i], map->cols);
-		write(1, "\n", 1);
-		i++;
-	}
+	while (*str)
+		write(1, str++, 1);
 }
 
-void	solve(char **array_map)
+t_bool	ft_is_even(int nbr)
 {
-	t_map	map;
+	return ((EVEN(nbr)) ? TRUE : FALSE);
+}
 
-	parser(array_map, &map);
-	solver(&map);
-	print_map(&map);
+int	main(int argc, char **argv)
+{
+	(void)argv;
+	if (ft_is_even(argc - 1) == TRUE)
+		ft_putstr(EVEN_MSG);
+	else
+		ft_putstr(ODD_MSG);
+	return (SUCCESS);
 }

@@ -1,43 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ut.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: leilai <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/03 15:39:45 by leilai            #+#    #+#             */
-/*   Updated: 2025/09/08 11:46:19 by leilai           ###   ####lausanne.ch   */
+/*   Created: 2025/09/08 16:08:22 by leilai            #+#    #+#             */
+/*   Updated: 2025/09/10 20:27:02 by leilai           ###   ####lausanne.ch   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#ifndef UT_H
+# define UT_H
 
-int	ft_strlen(char *s);
-
-char	*ft_strdup(char *src)
+typedef struct s_map
 {
-	char	*dest;
-	int		i;
+	int		rows;
+	int		cols;
+	char	empty;
+	char	obstacle;
+	char	full;
+	char	**grid;
+}	t_map;
 
-	dest = malloc(sizeof(char) * ft_strlen(src));
-	if (!dest)
-		return (0);
-	i = 0;
-	while (src[i])
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
-
-int	ft_strlen(char *s)
+typedef struct s_square
 {
-	int	i;
+	int	size;
+	int	row;
+	int	col;
+}	t_square;
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
+#endif

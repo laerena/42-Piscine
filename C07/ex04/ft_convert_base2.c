@@ -6,7 +6,7 @@
 /*   By: leilai <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 12:12:00 by leilai            #+#    #+#             */
-/*   Updated: 2025/09/09 14:31:33 by leilai           ###   ####lausanne.ch   */
+/*   Updated: 2025/09/09 16:41:58 by leilai           ###   ####lausanne.ch   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ int	count_len(long n, int base)
 	int	i;
 
 	i = 0;
+	if (n == 0)
+		return (1);
 	if (n < 0)
 		n *= -1;
 	while (n != 0)

@@ -6,30 +6,22 @@
 /*   By: leilai <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 12:37:07 by leilai            #+#    #+#             */
-/*   Updated: 2025/09/08 01:42:47 by leilai           ###   ####lausanne.ch   */
+/*   Updated: 2025/09/08 01:53:44 by leilai           ###   ####lausanne.ch   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int	ft_strlen(char *s);
-int	result_len(int size, char **strs, char *sep);
+int		ft_strlen(char *s);
+int		result_len(int size, char **strs, char *sep);
 char	*ft_strcat(char *dest, char *src);
 
 char	*ft_strjoin(int size, char **strs, char *sep)
 {
 	char	*result;
-	int	len;
-	int	i;
+	int		len;
+	int		i;
 
-	if (size == 0)
-	{
-		result = malloc(1);
-		if (!result)
-			return (NULL);
-		result[0] = '\0';
-		return (result);
-	}
 	len = result_len(size, strs, sep);
 	result = malloc(len);
 	if (!result)
@@ -43,7 +35,6 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 			ft_strcat(result, sep);
 		i++;
 	}
-	result[len] = '\0';
 	return (result);
 }
 
@@ -78,6 +69,8 @@ int	result_len(int size, char **strs, char *sep)
 	int	i;
 	int	len;
 
+	if (size == 0)
+		return (0);
 	i = 0;
 	len = 0;
 	while (i < size)
@@ -88,7 +81,7 @@ int	result_len(int size, char **strs, char *sep)
 	len = len + ft_strlen(sep) * (size - 1);
 	return (len + 1);
 }
-
+/*
 #include <stdio.h>
 int	main(void)
 {
@@ -102,4 +95,4 @@ int	main(void)
 	free(result);
 	return (0);
 }
-
+*/

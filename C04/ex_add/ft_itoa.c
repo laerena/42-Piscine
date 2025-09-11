@@ -6,7 +6,7 @@
 /*   By: leilai <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 12:38:43 by leilai            #+#    #+#             */
-/*   Updated: 2025/09/08 13:14:28 by leilai           ###   ####lausanne.ch   */
+/*   Updated: 2025/09/11 17:20:17 by leilai           ###   ####lausanne.ch   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ char	*ft_itoa(int nb)
 		count++;
 	if (!(res = malloc(sizeof(char) * (count + 1))))
 		return (NULL);
+	res[count] = '\0';
 	if (n < 0)
 	{
 		n *= -1;
@@ -35,10 +36,10 @@ char	*ft_itoa(int nb)
 		i++;
 	}
 	while (count > i)
-	{
-		count--;
-		res[count] = (n % 10) + '0';
+	{	
+		res[count - 1] = (n % 10) + '0';
 		n = n / 10;
+		count--;
 	}
 	return (res);
 }
@@ -61,5 +62,5 @@ int	count_len(long n)
 #include <stdio.h>
 int	main()
 {
-	printf("%s\n", ft_itoa(0));
+	printf("%s\n", ft_itoa(-825));
 }

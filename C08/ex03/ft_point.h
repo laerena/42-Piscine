@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   ft_point.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romousqu <romousqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: leilai <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/09 17:53:28 by romousqu          #+#    #+#             */
-/*   Updated: 2025/09/09 18:02:35 by romousqu         ###   ########.fr       */
+/*   Created: 2025/09/09 15:05:35 by leilai            #+#    #+#             */
+/*   Updated: 2025/09/09 15:08:39 by leilai           ###   ####lausanne.ch   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#ifndef FT_POINT_H
+# define FT_POINT_H
 
-void	print_array(char **array)
+typedef struct s_point
 {
-	int	i;
-	int	j;
+	int	x;
+	int	y;
+}	t_point;
 
-	i = 0;
-	while (array[i])
-	{
-		j = 0;
-		while(array[i][j])
-		{
-			write(1, &array[i][j], 1);
-			j++;
-		}
-		write(1, "\n", 1);
-		i++;
-	}
-}
+#endif

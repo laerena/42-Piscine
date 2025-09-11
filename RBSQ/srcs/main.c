@@ -6,7 +6,7 @@
 /*   By: romousqu <romousqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 15:20:37 by romousqu          #+#    #+#             */
-/*   Updated: 2025/09/10 09:08:28 by leilai           ###   ####lausanne.ch   */
+/*   Updated: 2025/09/10 22:32:00 by romousqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,12 @@ int		ft_strlen(char *str);
 char	*ft_strdup(char *src);
 void	print_array(char **array);
 char	**ft_split(char *str, char c);
-void    solve(char **array_map);
+void	solve(char **array_map);
+int		free_array(char **array_map, int returned);
+int		check_array(char **array);
+int		free_str(char *str, int return_value);
+int		finish_n_double_n(char *pre_map);
+char	*free_str2(char *str, char *returned);
 
 int	ft_error(char *msg, int return_value)
 {
@@ -28,13 +33,11 @@ int	ft_error(char *msg, int return_value)
 	return (return_value);
 }
 
-
 char	*ft_str_njoin(char *original, char *added, int n)
 {
 	char	*new;
 	int		i;
 	int		j;
-
 
 	new = (char *)malloc(sizeof(char) + (ft_strlen(original) + n + 1));
 	if (!new)
@@ -52,11 +55,9 @@ char	*ft_str_njoin(char *original, char *added, int n)
 		j++;
 	}
 	new[i + j] = '\0';
- 	free (original);
+	free (original);
 	return (new);
 }
-
-
 
 //kinda
 // 
@@ -68,21 +69,20 @@ char	*read_string(int fd)
 
 	already_read = 1;
 	res = ft_strdup("");
-	while(already_read > 0)
+	while (already_read > 0)
 	{
-		already_read = read(fd, current, 1024);
+		already_read = read(fd, current, 1023);
 		current[already_read] = '\0';
-		// printf("\ncurrent :\n%s\n", current);
+		if (!(res[0]) && already_read <= 0)
+			return (free_str2(res, NULL));
 		res = ft_str_njoin(res, current, already_read);
 		if (!res)
 			return (NULL);
 	}
-
 	close(fd);
 	if (already_read < 0)
 	{
 		free(res);
-		ft_error("read error\n", 0);
 		return (NULL);
 	}
 	return (res);
@@ -91,9 +91,11 @@ char	*read_string(int fd)
 // Main function where most of everything happens
 // 
 // First we open the current argv to a fd to extract the map into a char *map, 
-// then, we split the first line into a new char *, the map is sent into a new char **array; 
+// then, we split the first line into a new char *,
+//  the map is sent into a new char **array; 
 // 
-// then we check the dimensions (rectangle with the matching number of line), if each one of the char in the map match the argument
+// then we check the dimensions (rectangle with the matching number of line), 
+// if each one of the char in the map match the argument
 // 
 // then i send the map to you 
 //
@@ -101,7 +103,6 @@ int	bsq(char *file_name, int no_arg)
 {
 	int		fd;
 	char	*pre_map;
-	// char	*first_line;
 	char	**array_map;
 
 	if (no_arg)
@@ -113,38 +114,25 @@ int	bsq(char *file_name, int no_arg)
 			return (0);
 		pre_map = read_string(fd);
 	}
-	if (!pre_map)
-		return (0);
-	array_map = ft_split(pre_map, '\n'); // printf("\nPremap : \n%s\n\nc", pre_map);
+	if (!pre_map || !finish_n_double_n(pre_map))
+		return (free_str(pre_map, 0));
+	array_map = ft_split(pre_map, '\n');
 	free(pre_map);
 	if (!no_arg)
 		close (fd);
-	printf("array created : \n");
-	print_array(array_map);					//map after splitx
-	/*if(!check_array(array_map))
-	{
-		free_array(array_map);
-		return (0);
-	}
-	*/
-	//you function
-	//leilai(array_map);
-	solve(array_map);
-
-	
-	// free_array(array_map);			or let s add a free all function?
-	return (1);
+	if (check_array(array_map))
+		solve(array_map);
+	else
+		return (free_array(array_map, 0));
+	return (free_array(array_map, 1));
 }
-
 
 int	main(int argc, char **argv)
 {
 	int	i;
 
-	printf("starting :\n");
 	if (argc == 1)
-	{	
-		// printf("taking from standard input");
+	{
 		if (!bsq(NULL, argc))
 			ft_putstr("map error\n");
 	}
@@ -153,24 +141,11 @@ int	main(int argc, char **argv)
 		i = 1;
 		while (i < argc)
 		{
-			if (i > 1)
-				ft_putstr("");
 			if (!bsq(argv[i], 0))
 			{
 				ft_putstr("map error\n");
 			}
 			i++;
-		}	
+		}
 	}
 }
-
-// char **;
-
-// "oooooXoooooo"
-// "oooXoooooooo"
-// "ooXooooooooo"
-// "oooooooooXoo"
-// "ooooXooooooo"
-
-
-
